@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ -z "$1" ]; then echo "Usage: inspect <file.db>"; exit 1; fi
+# Assumes datasette is installed globally via 'uv tool install'
+datasette "$1" --open
