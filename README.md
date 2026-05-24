@@ -1,59 +1,60 @@
-# The Data Engineer's Workbench
+# Data Engineering Toolkit
 
-This is my personal "mission control"—a consolidated development environment built for speed, data visibility, and zero-friction context switching. 
+Personal development environment optimized for speed, data visibility, and low-friction context switching.
 
-I built this because I was tired of two things:
-1. Hunting for virtual environments across different AI and data projects.
-2. Having to write a Python script just to "see" what an agent just saved into a local database.
+I built this to solve two specific pain points:
+1. Fragmented virtual environments across AI and data projects.
+2. The overhead of writing Python scripts just to inspect local database state.
 
-## The Philosophy
-Data engineering is often about the transition between code and state. This toolkit ensures that transition is instantaneous. It relies on a modern stack: Ghostty for terminal performance, uv for lightning-fast Python management, and DuckDB for the heavy lifting.
+## Core Concepts
+
+Data engineering is the bridge between code and state. This environment makes that bridge invisible. It relies on a high-performance stack: Ghostty for terminal performance, uv for Python management, and DuckDB for local analytics.
 
 ---
 
-## Key Workflows
+## Workflows
 
 ### The "Jump" (lab)
-I use a central "Data Lab" for rapid prototyping. One command puts me in the directory and activates the environment. No cd, no source .venv/bin/activate. Just flow.
+A dedicated "Data Lab" for prototyping. One command handles directory navigation and environment activation.
 
 ### The "Inspector" (inspect)
-When an agent or a pipeline drops a .db file, I don't guess. I run:
+Quick visualization for .db files.
 ```bash
 inspect data/raw/my_data.db
 ```
-This triggers a custom script (quick-db) that spins up a Datasette instance in the browser. I get a full GUI to filter, sort, and SQL-query my local data immediately.
+This triggers a script that spins up a Datasette instance in the browser, providing a full GUI for filtering and SQL queries.
 
 ### The "Hot Reload" (reload-dots)
-My environment evolves as I do. When I add a new alias or utility, reload-dots syncs everything and refreshes my shell instantly.
+Sync configuration changes across the system and refresh the shell session instantly.
 
 ---
 
-## What's Inside?
+## Components
 
-- **bin/**: Specialized shell scripts (like quick-db).
-- **zsh/**: My brain's shortcuts. Modular .zshrc and aliases.zsh.
-- **ghostty/**: Configs for the fastest terminal on macOS.
-- **install.sh**: A one-click symlink engine to deploy this entire setup on a new machine.
+- **bin/**: Custom shell utilities.
+- **zsh/**: Modular shell configuration and aliases.
+- **ghostty/**: High-performance terminal configuration.
+- **install.sh**: Symlink engine for environment deployment.
 
-## My Stack
-*   **Package Manager**: [uv](https://github.com/astral-sh/uv) (The only way to manage Python in 2024).
-*   **Database**: [DuckDB](https://duckdb.org/) (Local analytical powerhouse).
-*   **Terminal**: [Ghostty](https://ghostty.org/) (Custom Tovy-branded theme).
-*   **Aesthetics**: Minimalist Zsh prompt using the Tovy color palette (Deep Navy, Electric Blue, and Purple).
+## Stack
+*   **Package Manager**: [uv](https://github.com/astral-sh/uv)
+*   **Database**: [DuckDB](https://duckdb.org/)
+*   **Terminal**: [Ghostty](https://ghostty.org/)
+*   **Aesthetics**: Minimalist Zsh prompt based on the Tovy color palette.
 
 ---
 
 ## Customization
 
-To make this workbench your own, you just need to adjust two variables:
+Adjust these variables to match your local setup:
 
-1.  **`zsh/.zshrc`**: Update `DOTFILES_PATH` to the location where you cloned this repository.
-2.  **`zsh/aliases.zsh`**: Update `MAIN_PROJECT_PATH` to point to your primary workspace.
+1.  **zsh/.zshrc**: Set `DOTFILES_PATH` to your clone location.
+2.  **zsh/aliases.zsh**: Set `MAIN_PROJECT_PATH` to your primary workspace.
 
-After making changes, run `reload-dots` to apply them.
+Run `reload-dots` after modifying.
 
-### Personalizing with `aliases.local.zsh`
-If you want to use your own project names or custom branding (e.g., calling the `lab` command `tovy`), you can create a `zsh/aliases.local.zsh` file. This file is git-ignored, so your personal paths and aliases stay on your machine.
+### Local Overrides
+Use `zsh/aliases.local.zsh` for personal aliases or machine-specific paths. This file is git-ignored to keep your local environment private.
 
 ```bash
 # Example aliases.local.zsh
@@ -61,9 +62,7 @@ alias myproj="lab"
 export MAIN_PROJECT_PATH="$HOME/work/my-cool-project"
 ```
 
-## Quick Start
-
-If you want to adopt this workflow:
+## Setup
 
 ```bash
 git clone https://github.com/GielNijkamp/tool-kit.git ~/repos/dotfiles
@@ -71,7 +70,7 @@ cd ~/repos/dotfiles
 ./install.sh
 ```
 
-*Note: This setup assumes you have uv and ghostty installed.*
+*Prerequisites: uv and ghostty.*
 
 ---
 **"The goal isn't just to write code, but to reduce the distance between an idea and a result."**
