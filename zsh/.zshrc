@@ -20,15 +20,16 @@ export PATH="$HOME/.local/bin:$PATH"
 # Load aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
-# --- Tovy Design Prompt ---
-# Colors from Tovy logo
+# --- Tovy Design Prompt (Gradient Focus) ---
+# Colors sampled from the 'Y' gradient
 TOVY_WHITE="#ffffff"
-TOVY_BLUE="#5e6df2"
-TOVY_PURPLE="#a175d1"
+TOVY_BLUE="#4a6cf7"    # Bright start of the Y
+TOVY_MID="#7d72f0"     # Middle of the gradient
+TOVY_PURPLE="#b579f2"  # Soft purple end of the Y
 
-# Design: [user@host] [path] [accent]
-# Use double quotes to allow variable expansion
-PROMPT="%F{$TOVY_WHITE}%n%f@%F{$TOVY_WHITE}%m%f %F{$TOVY_BLUE}%1~%f %F{$TOVY_PURPLE}❯%f "
+# Design: [user] in blue -> [host] in mid -> [path] in purple
+# This creates a "horizontal gradient" across your command line
+PROMPT="%F{$TOVY_BLUE}%n%f@%F{$TOVY_MID}%m%f %F{$TOVY_PURPLE}%1~%f %# "
 
 # Enable syntax highlighting if available
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

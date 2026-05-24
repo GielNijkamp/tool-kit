@@ -1,11 +1,11 @@
-# Ghostty Tovy Theme
+# Ghostty Tovy Theme (Gradient Focus)
 background = #05080f
 foreground = #ffffff
-cursor-color = #5e6df2
-selection-background = #a175d1
+cursor-color = #4a6cf7
+selection-background = #7d72f0
 selection-foreground = #ffffff
 
-# Palette (Customized for Tovy aesthetic)
+# Palette (Samples from the Tovy 'Y' Gradient)
 palette = 0=#05080f
 palette = 8=#1a1d23
 palette = 1=#ff5555
@@ -14,9 +14,9 @@ palette = 2=#50fa7b
 palette = 10=#69ff94
 palette = 3=#f1fa8c
 palette = 11=#ffffa5
-palette = 4=#5e6df2
+palette = 4=#4a6cf7
 palette = 12=#7a88ff
-palette = 5=#a175d1
+palette = 5=#b579f2
 palette = 13=#c299ff
 palette = 6=#8be9fd
 palette = 14=#a4ffff
