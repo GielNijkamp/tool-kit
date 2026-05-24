@@ -13,8 +13,8 @@ Data engineering is often about the transition between code and state. This tool
 
 ## Key Workflows
 
-### The "Jump" (tovy)
-I use a central "Tovy" hub for rapid prototyping. One command puts me in the directory and activates the environment. No cd, no source .venv/bin/activate. Just flow.
+### The "Jump" (lab)
+I use a central "Data Lab" for rapid prototyping. One command puts me in the directory and activates the environment. No cd, no source .venv/bin/activate. Just flow.
 
 ### The "Inspector" (inspect)
 When an agent or a pipeline drops a .db file, I don't guess. I run:
@@ -51,6 +51,15 @@ To make this workbench your own, you just need to adjust two variables:
 2.  **`zsh/aliases.zsh`**: Update `MAIN_PROJECT_PATH` to point to your primary workspace.
 
 After making changes, run `reload-dots` to apply them.
+
+### Personalizing with `aliases.local.zsh`
+If you want to use your own project names or custom branding (e.g., calling the `lab` command `tovy`), you can create a `zsh/aliases.local.zsh` file. This file is git-ignored, so your personal paths and aliases stay on your machine.
+
+```bash
+# Example aliases.local.zsh
+alias myproj="lab"
+export MAIN_PROJECT_PATH="$HOME/work/my-cool-project"
+```
 
 ## Quick Start
 
