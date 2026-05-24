@@ -20,24 +20,52 @@ export PATH="$HOME/.local/bin:$PATH"
 # Load aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
-# --- Tovy UI/UX Prompt ---
-# Colors sampled from the 'Y' gradient
+# --- Tovy UI/UX Theme Configuration ---
+TOVY_BLUE="#4a6cf7"
+TOVY_MID="#7d72f0"
+TOVY_PURPLE="#b579f2"
 TOVY_WHITE="#ffffff"
-TOVY_BLUE="#4a6cf7"    # Bright start of the Y
-TOVY_MID="#7d72f0"     # Middle of the gradient
-TOVY_PURPLE="#b579f2"  # Soft purple end of the Y
+TOVY_BG="#05080f"
 
-# Enable Git integration for better context UX
+# 1. Completion Menu UX
+# High-end tab completion with Tovy colors
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:descriptions' format '%F{$TOVY_PURPLE}── %d ──%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{#ff6e6e}── %d (errors: %e) ──%f'
+zstyle ':completion:*' list-colors "=(#b) #([0-9]*) *=0=38;5;0;48;5;4" # Matches Ghostty selection
+autoload -Uz compinit && compinit
+
+# 2. Git Integration (Enhanced)
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt PROMPT_SUBST
-zstyle ':vcs_info:git:*' formats ' %F{#bfbfbf}on%f %F{#ff6e6e} %b%f'
+zstyle ':vcs_info:git:*' formats ' %F{#bfbfbf}on%f %F{#ff6e6e} %b%f%u%c'
+zstyle ':vcs_info:git:*' actionformats ' %F{#bfbfbf}on%f %F{#ff6e6e} %b%f %F{yellow}(%a)%f'
 
-# Design: Two-Line Layout for maximum readability
-# - Line 1: Context (User, Machine, Path, and Git branch)
-# - Line 2: Clean input area so long paths don't squish your commands
-PROMPT=$'\n'"%F{$TOVY_BLUE}╭─%f %F{$TOVY_BLUE}%n%f@%F{$TOVY_MID}%m%f %F{$TOVY_WHITE}in%f %F{$TOVY_PURPLE}%~%f\${vcs_info_msg_0_}"$'\n'"%F{$TOVY_BLUE}╰─❯%f "
+# 3. Command Execution Timing
+# Shows how long a command took if > 1s
+zmodload zsh/datetime
+preexec() {
+  timer=$EPOCHREALTIME
+}
+precmd() {
+  if [ $timer ]; then
+    now=$EPOCHREALTIME
+    elapsed=$(($now - $timer))
+    if [ $elapsed -gt 1 ]; then
+      export RPROMPT="%F{#bfbfbf}took $(printf "%.2fs" $elapsed)%f"
+    else
+      export RPROMPT=""
+    fi
+    unset timer
+  fi
+}
 
-# Enable syntax highlighting if available
+# 4. Final Prompt Design (The Cockpit)
+# Line 1: ╭─ [User/Host Icon] [Path Icon] [Git Branch]
+# Line 2: ╰─ [Action Icon]
+PROMPT=$'\n'"%F{$TOVY_BLUE}╭─%f %F{$TOVY_BLUE} %n%f%F{$TOVY_WHITE}@%f%F{$TOVY_MID}󰒋 %m%f %F{$TOVY_WHITE}in%f %F{$TOVY_PURPLE} %~%f\${vcs_info_msg_0_}"$'\n'"%F{$TOVY_BLUE}╰─❯%f "
+
+# Enable syntax highlighting (sampled from Homebrew)
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
