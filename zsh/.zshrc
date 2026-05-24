@@ -50,10 +50,10 @@ preexec() {
   timer=$EPOCHREALTIME
 }
 precmd() {
-  if [ $timer ]; then
-    now=$EPOCHREALTIME
-    elapsed=$(($now - $timer))
-    if [ $elapsed -gt 1 ]; then
+  if [[ -n $timer ]]; then
+    local now=$EPOCHREALTIME
+    local elapsed=$(( now - timer ))
+    if (( elapsed > 1 )); then
       export RPROMPT="%F{#bfbfbf}took $(printf "%.2fs" $elapsed)%f"
     else
       export RPROMPT=""
