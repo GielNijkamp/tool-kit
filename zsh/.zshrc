@@ -20,16 +20,24 @@ export PATH="$HOME/.local/bin:$PATH"
 # Load aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
 
-# --- Tovy Design Prompt (Gradient Focus) ---
+# --- Tovy UI/UX Prompt ---
 # Colors sampled from the 'Y' gradient
 TOVY_WHITE="#ffffff"
 TOVY_BLUE="#4a6cf7"    # Bright start of the Y
 TOVY_MID="#7d72f0"     # Middle of the gradient
 TOVY_PURPLE="#b579f2"  # Soft purple end of the Y
 
-# Design: [user] in blue -> [host] in mid -> [path] in purple
-# This creates a "horizontal gradient" across your command line
-PROMPT="%F{$TOVY_BLUE}%n%f@%F{$TOVY_MID}%m%f %F{$TOVY_PURPLE}%1~%f %# "
+# Enable Git integration for better context UX
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt PROMPT_SUBST
+zstyle ':vcs_info:git:*' formats ' %F{#bfbfbf}on%f %F{#ff6e6e} %b%f'
+
+# Design: Two-Line Layout for maximum readability
+# - Line 1: Context (User, Machine, Path, and Git branch)
+# - Line 2: Clean input area so long paths don't squish your commands
+PROMPT=$'\n'"%F{$TOVY_BLUE}╭─%f %F{$TOVY_BLUE}%n%f@%F{$TOVY_MID}%m%f %F{$TOVY_WHITE}in%f %F{$TOVY_PURPLE}%~%f\${vcs_info_msg_0_}"$'\n'"%F{$TOVY_BLUE}╰─❯%f "
 
 # Enable syntax highlighting if available
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
