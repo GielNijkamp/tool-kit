@@ -27,7 +27,8 @@ TOVY_BLUE="#5e6df2"
 TOVY_PURPLE="#a175d1"
 
 # Design: [user@host] [path] [accent]
-PROMPT='%F{$TOVY_WHITE}%n%f@%F{$TOVY_WHITE}%m%f %F{$TOVY_BLUE}%1~%f %F{$TOVY_PURPLE}❯%f '
+# Use double quotes to allow variable expansion
+PROMPT="%F{$TOVY_WHITE}%n%f@%F{$TOVY_WHITE}%m%f %F{$TOVY_BLUE}%1~%f %F{$TOVY_PURPLE}❯%f "
 
 # Enable syntax highlighting if available
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
