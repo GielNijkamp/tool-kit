@@ -38,8 +38,8 @@ My environment evolves as I do. When I add a new alias or utility, reload-dots s
 ## My Stack
 *   **Package Manager**: [uv](https://github.com/astral-sh/uv) (The only way to manage Python in 2024).
 *   **Database**: [DuckDB](https://duckdb.org/) (Local analytical powerhouse).
-*   **Terminal**: [Ghostty](https://ghostty.org/) (Performance & Aesthetics).
-*   **Exploration**: [Datasette](https://datasette.io/) (Visualizing the data).
+*   **Terminal**: [Ghostty](https://ghostty.org/) (Custom Tovy-branded theme).
+*   **Aesthetics**: Minimalist Zsh prompt using the Tovy color palette (Deep Navy, Electric Blue, and Purple).
 
 ---
 

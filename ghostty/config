@@ -1,1 +1,30 @@
-# Ghostty configuration
+# Ghostty Tovy Theme
+background = #05080f
+foreground = #ffffff
+cursor-color = #5e6df2
+selection-background = #a175d1
+selection-foreground = #ffffff
+
+# Palette (Customized for Tovy aesthetic)
+palette = 0=#05080f
+palette = 8=#1a1d23
+palette = 1=#ff5555
+palette = 9=#ff6e6e
+palette = 2=#50fa7b
+palette = 10=#69ff94
+palette = 3=#f1fa8c
+palette = 11=#ffffa5
+palette = 4=#5e6df2
+palette = 12=#7a88ff
+palette = 5=#a175d1
+palette = 13=#c299ff
+palette = 6=#8be9fd
+palette = 14=#a4ffff
+palette = 7=#bfbfbf
+palette = 15=#ffffff
+
+# Window styling
+window-padding-x = 10
+window-padding-y = 10
+font-family = "JetBrains Mono"
+font-size = 13
