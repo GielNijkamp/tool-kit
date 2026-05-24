@@ -43,6 +43,15 @@ My environment evolves as I do. When I add a new alias or utility, reload-dots s
 
 ---
 
+## Customization
+
+To make this workbench your own, you just need to adjust two variables:
+
+1.  **`zsh/.zshrc`**: Update `DOTFILES_PATH` to the location where you cloned this repository.
+2.  **`zsh/aliases.zsh`**: Update `MAIN_PROJECT_PATH` to point to your primary workspace.
+
+After making changes, run `reload-dots` to apply them.
+
 ## Quick Start
 
 If you want to adopt this workflow:
