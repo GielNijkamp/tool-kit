@@ -1,21 +1,24 @@
-# --- System Environment ---
-# FNM (Node Manager)
-eval "$(fnm env --use-on-cd)"
-
-# Google Cloud SDK
-if [ -f '/Users/nijkampg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nijkampg/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/nijkampg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nijkampg/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# OrbStack
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
-
 # --- Dotfiles Configuration ---
-export DOTFILES_PATH="$HOME/repos/dotfiles"
+# Automatically detect the dotfiles path based on the symlink
+export DOTFILES_PATH="$(dirname $(readlink ~/.zshrc))"
+# Fallback if the above fails or if not using symlinks
+[[ "$DOTFILES_PATH" == "." ]] && export DOTFILES_PATH="$HOME/repos/dotfiles"
+
 export PATH="$DOTFILES_PATH/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# --- System Environment ---
+# FNM (Node Manager)
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
+
+# Homebrew
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # Load aliases
 [ -f ~/.aliases.zsh ] && source ~/.aliases.zsh
